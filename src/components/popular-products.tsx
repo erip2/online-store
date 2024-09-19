@@ -1,42 +1,33 @@
-import { Category } from '@/app/layout';
 import Image from 'next/image';
-import formatPrice from '@/app/lib/utils/formatPrice';
+import { Product } from './new-products';
 import Link from 'next/link';
 import titleToSlug from '@/app/lib/utils/titleToSlug';
-import Button from '@/components/button';
+import formatPrice from '@/app/lib/utils/formatPrice';
+import Button from './button';
 
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  category: Category;
-  images: string[];
-  price: number;
-}
-
-export default async function NewProducts() {
+export default async function PopularProducts() {
   let data = await fetch(
-    `${process.env.NEXT_PUBLIC_PLATZKI_FAKE_STORE_API_URL}/products?offset=0&limit=4`
+    `${process.env.NEXT_PUBLIC_PLATZKI_FAKE_STORE_API_URL}/products?offset=4&limit=3`
   );
   let products: Product[] = await data.json();
 
   return (
-    <section className='px-6 py-12 text-black lg:px-0'>
+    <section className='py-12 pl-6 text-black lg:px-0'>
       <h3 className='mb-5 font-clash text-xl md:mb-8 md:text-[32px]'>
-        New Products
+        Our Popular Products
       </h3>
-      <div className='gap grid grid-cols-2 gap-x-4 gap-y-5 lg:grid-cols-4'>
+      <div className='flex gap-x-3 overflow-scroll pr-6 md:grid md:grid-cols-4 md:overflow-auto lg:pr-0'>
         {products.map((product: Product) => (
           <Link
             href={`/product/${titleToSlug(product.title)}`}
-            className='flex flex-col'
+            className='flex shrink-0 flex-col md:shrink md:first:col-span-2'
             key={product.id}
           >
             <Image
               src={product.images[0]}
-              className='h-[200px] w-full object-cover md:h-[375px]'
-              width={160}
-              height={200}
+              className='h-[250px] w-full object-cover md:h-[375px]'
+              width={200}
+              height={338}
               alt={product.title}
             />
             <span className='mb-2 mt-6 font-clash text-xl'>
@@ -48,7 +39,7 @@ export default async function NewProducts() {
           </Link>
         ))}
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center pr-6'>
         <Button
           asChild
           variant='secondary'

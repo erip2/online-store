@@ -38,7 +38,7 @@ const items: Item[] = [
 
 export default function BrandDifferent() {
   return (
-    <section className='px-6 py-12 text-black md:px-0'>
+    <section className='px-6 py-12 text-black lg:px-0'>
       <h3 className='mb-9 w-3/4 font-clash text-xl md:mb-12 md:w-full md:text-center'>
         What makes our brand different
       </h3>
