@@ -4,11 +4,7 @@ import Link from 'next/link';
 import Search from '@/icons/search';
 import Menu from '@/icons/menu';
 import { useState } from 'react';
-
-interface Category {
-  id: number;
-  name: string;
-}
+import { Category } from '../layout';
 
 interface HeaderProps {
   categories: Category[];
@@ -43,7 +39,7 @@ export default function Header({ categories }: HeaderProps) {
               <li>
                 <Link href='/'>All Products</Link>
               </li>
-              {categories.map((category: Category) => (
+              {categories.slice(0, 8).map((category: Category) => (
                 <li key={category.id}>
                   <Link href={`/category/${category.id}`}>{category.name}</Link>
                 </li>
@@ -59,7 +55,7 @@ export default function Header({ categories }: HeaderProps) {
             <li>
               <Link href='/'>All Products</Link>
             </li>
-            {categories.map((category: Category) => (
+            {categories.slice(0, 4).map((category: Category) => (
               <li key={category.id}>
                 <Link href={`/category/${category.id}`}>{category.name}</Link>
               </li>

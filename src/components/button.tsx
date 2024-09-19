@@ -10,14 +10,13 @@ export interface ButtonProps
 }
 
 const buttonVariants = cva(
-  'inline-flex justify-center py-4 px-8 font-satoshi',
+  'inline-flex justify-center py-4 px-8 font-satoshi ease-in-out transition-colors',
   {
     variants: {
       variant: {
         primary: 'bg-white text-dark-primary',
-        secondary:
-          'bg-dark-primary text-white hover:bg-dark-primary hover:text-white',
-        tertiary: 'bg-primary text-white',
+        secondary: 'bg-light-grey text-dark-primary hover:bg-border-grey',
+        tertiary: 'bg-light-grey/15 text-white',
         ghost: 'bg-transparent text-dark-primary',
       },
       size: {

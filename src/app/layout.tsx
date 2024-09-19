@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   description: 'Fake Online Store',
 };
 
-interface Category {
+export interface Category {
   id: number;
   name: string;
 }
@@ -55,7 +55,7 @@ export default async function RootLayout({
 
   return (
     <html lang='en'>
-      <body className='font-clash'>
+      <body className={`${ClashDisplay.variable} ${Satoshi.variable}`}>
         <Header categories={categories} />
         {children}
       </body>

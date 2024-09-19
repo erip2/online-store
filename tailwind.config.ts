@@ -21,8 +21,8 @@ const config: Config = {
         'border-dark': '#CAC6DA',
       },
       fontFamily: {
-        clash: ['ClashDisplay', 'sans-serif'],
-        satoshi: ['Satoshi', 'sans-serif'],
+        clash: ['var(--font-clash-display)'],
+        satoshi: ['var(--font-satoshi)'],
       },
     },
   },
