@@ -49,6 +49,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
         ref={ref}
+        type={props.onClick ? 'button' : 'submit'}
       >
         {props.children}
       </Comp>
