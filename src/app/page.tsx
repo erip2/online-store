@@ -2,6 +2,8 @@ import BrandDifferent from '@/components/brand-different';
 import Container from '@/components/container';
 import HeroBlock from '@/components/hero-block';
 import NewProducts from '@/components/new-products';
+import NewsLetter from '@/components/newsletter';
+import PopularProducts from '@/components/popular-products';
 
 export default function Home() {
   return (
@@ -10,7 +12,9 @@ export default function Home() {
         <HeroBlock />
         <BrandDifferent />
         <NewProducts />
+        <PopularProducts />
       </Container>
+      <NewsLetter />
     </main>
   );
 }
