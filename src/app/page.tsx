@@ -1,5 +1,6 @@
 import BrandDifferent from '@/components/brand-different';
 import Container from '@/components/container';
+import GetInTouch from '@/components/get-in-touch';
 import HeroBlock from '@/components/hero-block';
 import NewProducts from '@/components/new-products';
 import NewsLetter from '@/components/newsletter';
@@ -15,6 +16,7 @@ export default function Home() {
         <PopularProducts />
       </Container>
       <NewsLetter />
+      <GetInTouch />
     </main>
   );
 }
