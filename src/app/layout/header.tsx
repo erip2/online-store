@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Search from '@/icons/search';
 import Menu from '@/icons/menu';
 import { useState } from 'react';
-import { Category } from '../layout';
+import { Category } from '@/app/layout';
 
 interface HeaderProps {
   categories: Category[];
@@ -36,12 +36,14 @@ export default function Header({ categories }: HeaderProps) {
         {isOpen && (
           <nav className='bg-light-grey text-[#726E8D]'>
             <ul className='flex gap-x-[44px] overflow-scroll scroll-smooth whitespace-nowrap px-6 py-4 text-base'>
-              <li>
+              <li key='all-products-mobile'>
                 <Link href='/'>All Products</Link>
               </li>
               {categories.slice(0, 8).map((category: Category) => (
-                <li key={category.id}>
-                  <Link href={`/category/${category.id}`}>{category.name}</Link>
+                <li key={`mobile-${category.slug}`}>
+                  <Link href={`/category/${category.slug}`}>
+                    {category.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -52,12 +54,12 @@ export default function Header({ categories }: HeaderProps) {
       <div className='hidden py-5 md:block'>
         <nav className='text-[#726E8D]'>
           <ul className='flex justify-center gap-x-[44px] whitespace-nowrap px-6 text-base'>
-            <li>
+            <li key='all-products-desktop'>
               <Link href='/'>All Products</Link>
             </li>
             {categories.slice(0, 4).map((category: Category) => (
-              <li key={category.id}>
-                <Link href={`/category/${category.id}`}>{category.name}</Link>
+              <li key={`desktop-${category.slug}`}>
+                <Link href={`/category/${category.slug}`}>{category.name}</Link>
               </li>
             ))}
           </ul>

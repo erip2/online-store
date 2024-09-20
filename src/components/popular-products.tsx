@@ -7,9 +7,10 @@ import Button from './button';
 
 export default async function PopularProducts() {
   let data = await fetch(
-    `${process.env.NEXT_PUBLIC_PLATZKI_FAKE_STORE_API_URL}/products?offset=4&limit=3`
+    `${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/products?offset=4&limit=3`
   );
-  let products: Product[] = await data.json();
+  let response = await data.json();
+  let products: Product[] = response.products;
 
   return (
     <section className='py-12 pl-6 text-black lg:px-0'>

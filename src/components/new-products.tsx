@@ -16,9 +16,10 @@ export interface Product {
 
 export default async function NewProducts() {
   let data = await fetch(
-    `${process.env.NEXT_PUBLIC_PLATZKI_FAKE_STORE_API_URL}/products?offset=0&limit=4`
+    `${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/products?limit=4`
   );
-  let products: Product[] = await data.json();
+  let response = await data.json();
+  let products: Product[] = response.products;
 
   return (
     <section className='px-6 py-12 text-black lg:px-0'>

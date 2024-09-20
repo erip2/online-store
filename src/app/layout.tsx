@@ -39,8 +39,9 @@ export const metadata: Metadata = {
 };
 
 export interface Category {
-  id: number;
+  slug: string;
   name: string;
+  url: string;
 }
 
 export default async function RootLayout({
@@ -49,7 +50,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   let data = await fetch(
-    `${process.env.NEXT_PUBLIC_PLATZKI_FAKE_STORE_API_URL}/categories`
+    `${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/products/categories`
   );
   let categories: Category[] = await data.json();
 
