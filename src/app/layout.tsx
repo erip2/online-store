@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import Header from '@/app/layout/header';
+import Footer from '@/app/layout/footer';
 
 const ClashDisplay = localFont({
   src: [
@@ -59,6 +60,7 @@ export default async function RootLayout({
       <body className={`${ClashDisplay.variable} ${Satoshi.variable}`}>
         <Header categories={categories} />
         {children}
+        <Footer categories={categories} />
       </body>
     </html>
   );
