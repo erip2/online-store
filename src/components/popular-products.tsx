@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Product } from './new-products';
 import Link from 'next/link';
-import titleToSlug from '@/app/lib/utils/titleToSlug';
+import { titleToSlug } from '@/app/lib/utils/titleSlugUtils';
 import formatPrice from '@/app/lib/utils/formatPrice';
 import Button from './button';
 

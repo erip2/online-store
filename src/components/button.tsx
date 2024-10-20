@@ -2,11 +2,13 @@ import { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import cn from '@/app/lib/utils/cn';
 import { Slot } from '@radix-ui/react-slot';
+import CaretDown from '@/icons/caret-down';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  iconRight?: boolean;
 }
 
 const buttonVariants = cva(
@@ -38,6 +40,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'medium',
       className,
       asChild = false,
+      iconRight,
       ...props
     },
     ref
@@ -46,12 +49,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          iconRight && 'items-center gap-x-3'
+        )}
         {...props}
         ref={ref}
         type={props.onClick ? 'button' : 'submit'}
       >
-        {props.children}
+        <>
+          {props.children}
+          {iconRight && <CaretDown />}
+        </>
       </Comp>
     );
   }

@@ -2,7 +2,7 @@ import { Category } from '@/app/layout';
 import Image from 'next/image';
 import formatPrice from '@/app/lib/utils/formatPrice';
 import Link from 'next/link';
-import titleToSlug from '@/app/lib/utils/titleToSlug';
+import { titleToSlug } from '@/app/lib/utils/titleSlugUtils';
 import Button from '@/components/button';
 
 export interface Product {
@@ -12,6 +12,8 @@ export interface Product {
   category: Category;
   images: string[];
   price: number;
+  thumbnail: string;
+  brand: string;
 }
 
 export default async function NewProducts() {
