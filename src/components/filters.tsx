@@ -35,7 +35,7 @@ export default function Filters({
   };
 
   return (
-    <div className='space-y-12 text-black'>
+    <div className='space-y-12 px-6 text-black lg:px-0'>
       <div className='flex flex-col gap-y-5'>
         <span className='font-clash text-base'>Price</span>
         <ul className='flex flex-col gap-y-3'>

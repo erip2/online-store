@@ -2,12 +2,21 @@ import { Product } from '@/components/new-products';
 import { CheckedState } from '@radix-ui/react-checkbox';
 import { useState, useEffect, useCallback } from 'react';
 
+type SortField = 'title' | 'price';
+type SortDirection = 'asc' | 'desc';
+
+interface SortConfig {
+  field: SortField;
+  direction: SortDirection;
+}
+
 const useProductFilters = (products: Product[]) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [activeFilters, setActiveFilters] = useState({
     priceRanges: [] as (number | [number, number])[],
     brands: [] as string[],
   });
+  const [sortConfig, setSortConfig] = useState<SortConfig | null>(null);
 
   const applyFilters = useCallback(() => {
     let updatedProducts = [...products];
@@ -31,8 +40,23 @@ const useProductFilters = (products: Product[]) => {
       );
     }
 
+    if (sortConfig) {
+      updatedProducts.sort((a, b) => {
+        const { field, direction } = sortConfig;
+        let comparison = 0;
+
+        if (field === 'title') {
+          comparison = a.title.localeCompare(b.title);
+        } else if (field === 'price') {
+          comparison = a.price - b.price;
+        }
+
+        return direction === 'asc' ? comparison : -comparison;
+      });
+    }
+
     setFilteredProducts(updatedProducts);
-  }, [activeFilters, products]);
+  }, [activeFilters, products, sortConfig]);
 
   useEffect(() => {
     applyFilters();
@@ -68,10 +92,21 @@ const useProductFilters = (products: Product[]) => {
     });
   };
 
+  const triggerSorting = (field: SortField, direction: SortDirection) => {
+    setSortConfig({ field, direction });
+  };
+
+  const clearSort = () => {
+    setSortConfig(null);
+  };
+
   return {
     filteredProducts,
     triggerPriceFilter,
     triggerBrandFilter,
+    triggerSorting,
+    clearSort,
+    currentSort: sortConfig,
   };
 };
 
