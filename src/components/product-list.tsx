@@ -15,7 +15,7 @@ export default function ProductList({ products }: ProductListProps) {
     <>
       {products.map((product: Product) => (
         <Link
-          href={`product/${titleToSlug(product.title)}`}
+          href={`/product/${product.id}`}
           key={product.id}
           className='flex flex-col'
         >

@@ -14,6 +14,11 @@ export interface Product {
   price: number;
   thumbnail: string;
   brand: string;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
 }
 
 export default async function NewProducts() {
