@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Button from './button';
 import AmountInput from './amount-input';
+import { useCart } from '@/context/cartContext';
 
 interface AddToCartProps {
   productId: number;
@@ -13,6 +14,7 @@ export default function AddToCart({
   ...props
 }: AddToCartProps & React.HTMLAttributes<HTMLDivElement>) {
   const [amount, setAmount] = useState(1);
+  const { addToCart } = useCart();
 
   const onAddToCart = () => {
     fetch(`${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/carts/1`, {
@@ -28,7 +30,9 @@ export default function AddToCart({
       }),
     })
       .then((res) => res.json())
-      .then(console.log);
+      .then((data) => {
+        addToCart(data.products);
+      });
   };
 
   return (

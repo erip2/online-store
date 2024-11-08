@@ -5,6 +5,8 @@ import Search from '@/icons/search';
 import Menu from '@/icons/menu';
 import { useState } from 'react';
 import { Category } from '@/app/layout';
+import Cart from '@/icons/cart';
+import { useCart } from '@/context/cartContext';
 
 interface HeaderProps {
   categories: Category[];
@@ -12,6 +14,7 @@ interface HeaderProps {
 
 export default function Header({ categories }: HeaderProps) {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
+  const { cart } = useCart();
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -24,6 +27,14 @@ export default function Header({ categories }: HeaderProps) {
           Avion
         </Link>
         <div className='flex items-center gap-x-5'>
+          <button type='button' className='relative'>
+            <Cart />
+            {cart.length > 0 && (
+              <span className='absolute -right-2 -top-2 rounded-full bg-black px-1 text-xs text-white'>
+                {cart.length}
+              </span>
+            )}
+          </button>
           <button type='button'>
             <Search />
           </button>

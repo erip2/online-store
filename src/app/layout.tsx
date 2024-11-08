@@ -3,6 +3,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import Header from '@/app/layout/header';
 import Footer from '@/app/layout/footer';
+import CartContextProvider from '@/components/cart-context-provider';
 
 const ClashDisplay = localFont({
   src: [
@@ -58,9 +59,11 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${ClashDisplay.variable} ${Satoshi.variable}`}>
-        <Header categories={categories} />
-        {children}
-        <Footer categories={categories} />
+        <CartContextProvider>
+          <Header categories={categories} />
+          {children}
+          <Footer categories={categories} />
+        </CartContextProvider>
       </body>
     </html>
   );
