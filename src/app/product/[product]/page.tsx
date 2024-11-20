@@ -1,7 +1,10 @@
 import formatPrice from '@/app/lib/utils/formatPrice';
 import AddToCart from '@/components/add-to-cart';
-import Button from '@/components/button';
-import { Product } from '@/components/new-products';
+import BrandDifferent from '@/components/brand-different';
+import Container from '@/components/container';
+import type { Product } from '@/components/new-products';
+import NewsLetter from '@/components/newsletter';
+import RelatedProducts from '@/components/related-products';
 import Image from 'next/image';
 
 interface ProductProps {
@@ -67,6 +70,13 @@ export default async function Product({ params }: ProductProps) {
           />
         </div>
       </div>
+
+      <Container>
+        <RelatedProducts />
+        <BrandDifferent />
+      </Container>
+
+      <NewsLetter />
     </main>
   );
 }

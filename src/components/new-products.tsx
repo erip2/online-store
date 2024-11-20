@@ -1,9 +1,7 @@
 import { Category } from '@/app/layout';
-import Image from 'next/image';
-import formatPrice from '@/app/lib/utils/formatPrice';
 import Link from 'next/link';
-import { titleToSlug } from '@/app/lib/utils/titleSlugUtils';
 import Button from '@/components/button';
+import ProductCard from './product-card';
 
 export interface Product {
   id: number;
@@ -35,25 +33,7 @@ export default async function NewProducts() {
       </h3>
       <div className='gap grid grid-cols-2 gap-x-4 gap-y-5 lg:grid-cols-4'>
         {products.map((product: Product) => (
-          <Link
-            href={`/product/${titleToSlug(product.title)}`}
-            className='flex flex-col'
-            key={product.id}
-          >
-            <Image
-              src={product.images[0]}
-              className='h-[200px] w-full object-cover md:h-[375px]'
-              width={160}
-              height={200}
-              alt={product.title}
-            />
-            <span className='mb-2 mt-6 font-clash text-xl'>
-              {product.title}
-            </span>
-            <span className='font-satoshi text-lg'>
-              {formatPrice(product.price)}
-            </span>
-          </Link>
+          <ProductCard product={product} key={product.id} />
         ))}
       </div>
       <div className='flex justify-center'>

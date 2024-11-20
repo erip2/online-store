@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { titleToSlug } from '@/app/lib/utils/titleSlugUtils';
 import formatPrice from '@/app/lib/utils/formatPrice';
 import Button from './button';
+import ProductCard from './product-card';
 
 export default async function PopularProducts() {
   let data = await fetch(
@@ -19,25 +20,11 @@ export default async function PopularProducts() {
       </h3>
       <div className='flex gap-x-3 overflow-scroll pr-6 md:grid md:grid-cols-4 md:overflow-auto lg:pr-0'>
         {products.map((product: Product) => (
-          <Link
-            href={`/product/${titleToSlug(product.title)}`}
-            className='flex shrink-0 flex-col md:shrink md:first:col-span-2'
+          <ProductCard
+            className='md:shrink md:first:col-span-2'
+            product={product}
             key={product.id}
-          >
-            <Image
-              src={product.images[0]}
-              className='h-[250px] w-full object-cover md:h-[375px]'
-              width={200}
-              height={338}
-              alt={product.title}
-            />
-            <span className='mb-2 mt-6 font-clash text-xl'>
-              {product.title}
-            </span>
-            <span className='font-satoshi text-lg'>
-              {formatPrice(product.price)}
-            </span>
-          </Link>
+          />
         ))}
       </div>
       <div className='flex justify-center pr-6'>

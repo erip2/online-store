@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Product } from './new-products';
 import Image from 'next/image';
 import formatPrice from '@/app/lib/utils/formatPrice';
-import { titleToSlug } from '@/app/lib/utils/titleSlugUtils';
 
 interface ProductListProps {
   products: Product[];

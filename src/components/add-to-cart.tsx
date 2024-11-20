@@ -31,7 +31,7 @@ export default function AddToCart({
     })
       .then((res) => res.json())
       .then((data) => {
-        addToCart(data.products);
+        addToCart(data.products[0]);
       });
   };
 

@@ -30,7 +30,7 @@ export default function Header({ categories }: HeaderProps) {
           <button type='button' className='relative'>
             <Cart />
             {cart.length > 0 && (
-              <span className='absolute -right-2 -top-2 rounded-full bg-black px-1 text-xs text-white'>
+              <span className='absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-black text-xs text-white'>
                 {cart.length}
               </span>
             )}

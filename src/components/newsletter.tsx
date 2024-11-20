@@ -2,7 +2,7 @@ import NewsLetterForm from '@/components/newsletter-form';
 
 export default function NewsLetter() {
   return (
-    <section className='my-12 w-full text-black lg:mb-0 lg:bg-light-grey lg:pl-6 lg:pr-9'>
+    <section className='w-full py-12 text-black lg:mb-0 lg:bg-light-grey lg:pl-6 lg:pr-9'>
       <div className='flex flex-col items-center bg-white p-10 lg:mx-16 lg:my-14 lg:pb-14 lg:pt-16'>
         <h4 className='font-clash text-xl lg:text-4xl'>
           Join the club and get the benefits
