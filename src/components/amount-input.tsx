@@ -1,14 +1,23 @@
+import cn from '@/app/lib/utils/cn';
+
 interface AmountInputProps {
   value: number;
   onValueUpdate: (value: number) => void;
+  className?: string;
 }
 
 export default function AmountInput({
   value,
   onValueUpdate,
+  className,
 }: AmountInputProps) {
   return (
-    <div className='flex h-[34px] items-center justify-center bg-light-grey font-satoshi lg:h-11 lg:px-4'>
+    <div
+      className={cn(
+        'flex h-[34px] items-center justify-center bg-light-grey font-satoshi lg:h-11 lg:px-4',
+        className
+      )}
+    >
       <div>
         <button
           className='text-border-grey'

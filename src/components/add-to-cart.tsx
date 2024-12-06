@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Button from './button';
-import AmountInput from './amount-input';
+import Button from '@/components/button';
+import AmountInput from '@/components/amount-input';
 import { useCart } from '@/context/cartContext';
 
 interface AddToCartProps {
@@ -17,10 +17,11 @@ export default function AddToCart({
   const { addToCart } = useCart();
 
   const onAddToCart = () => {
-    fetch(`${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/carts/1`, {
-      method: 'PUT',
+    fetch(`${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/carts/add`, {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        userId: 1,
         products: [
           {
             id: productId,

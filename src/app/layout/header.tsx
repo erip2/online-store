@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import Search from '@/icons/search';
 import Menu from '@/icons/menu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Category } from '@/app/layout';
 import Cart from '@/icons/cart';
 import { useCart } from '@/context/cartContext';
+import { motion } from 'motion/react';
 
 interface HeaderProps {
   categories: Category[];
@@ -15,10 +16,15 @@ interface HeaderProps {
 export default function Header({ categories }: HeaderProps) {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
   const { cart } = useCart();
+  const [animateKey, setAnimateKey] = useState(0);
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    setAnimateKey((prevKey) => prevKey + 1);
+  }, [cart.length]);
 
   return (
     <header className='w-full bg-white text-2xl text-black'>
@@ -27,14 +33,19 @@ export default function Header({ categories }: HeaderProps) {
           Avion
         </Link>
         <div className='flex items-center gap-x-5'>
-          <button type='button' className='relative'>
+          <Link href='/cart' className='relative'>
             <Cart />
             {cart.length > 0 && (
-              <span className='absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-black text-xs text-white'>
+              <motion.span
+                key={animateKey}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className='absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-black text-xs text-white'
+              >
                 {cart.length}
-              </span>
+              </motion.span>
             )}
-          </button>
+          </Link>
           <button type='button'>
             <Search />
           </button>

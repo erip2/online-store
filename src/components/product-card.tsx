@@ -11,7 +11,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, ...props }: ProductCardProps) {
   return (
     <Link
-      href={`/product/${titleToSlug(product.title)}`}
+      href={`/product/${product.id}`}
       className='flex flex-col'
       key={product.id}
       {...props}

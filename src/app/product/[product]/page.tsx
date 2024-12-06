@@ -30,6 +30,7 @@ export default async function Product({ params }: ProductProps) {
             alt={response.title}
             width={721}
             height={759}
+            priority
           />
         </div>
         <div className='px-6 font-clash lg:w-1/2'>

@@ -1,3 +1,4 @@
+import { CartProduct } from '@/components/cart-items';
 import {
   createContext,
   useContext,
@@ -6,17 +7,11 @@ import {
   ReactNode,
 } from 'react';
 
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-}
-
 interface CartContextProps {
-  cart: CartItem[];
-  addToCart: (item: CartItem) => void;
-  removeFromCart: (id: string) => void;
+  cart: CartProduct[];
+  addToCart: (item: CartProduct) => void;
+  removeFromCart: (id: number) => void;
+  updateCartQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
 }
 
@@ -24,7 +19,7 @@ const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartProduct[]>([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -42,7 +37,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [cart, isInitialized]);
 
-  const addToCart = (item: CartItem) => {
+  const addToCart = (item: CartProduct) => {
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex(
         (cartItem) => cartItem.id === item.id
@@ -62,8 +57,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
+
+  const updateCartQuantity = (id: number, quantity: number) => {
+    setCart((prevCart) => {
+      if (quantity === 0) {
+        return prevCart.filter((cartItem) => cartItem.id !== id);
+      }
+      return prevCart.map((cartItem) =>
+        cartItem.id === id ? { ...cartItem, quantity: quantity } : cartItem
+      );
+    });
   };
 
   const clearCart = () => {
@@ -72,7 +78,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart }}
+      value={{ cart, addToCart, removeFromCart, updateCartQuantity, clearCart }}
     >
       {children}
     </CartContext.Provider>

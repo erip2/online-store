@@ -5,7 +5,7 @@ export default async function RelatedProducts() {
   let data = await fetch(
     `${process.env.NEXT_PUBLIC_DUMMY_JSON_API_URL}/products?limit=4`
   );
-  let jsonData = await data.json();\
+  let jsonData = await data.json();
   let products: Product[] = jsonData.products;
 
   return (
